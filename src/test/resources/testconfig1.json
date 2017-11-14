@@ -1,0 +1,16 @@
+{
+  "directed": true,
+  "strategy": "dfs",
+  "nodes": [
+    "a",
+    "b",
+    "c",
+    "d"
+  ],
+  "edges": [
+    "a->b",
+    "b->c",
+    "v->b",
+    "d->a"
+  ]
+}
