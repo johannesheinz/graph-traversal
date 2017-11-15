@@ -51,21 +51,40 @@ public class TableWriter extends Exporter {
 
     private String generateTableRow(State state) {
 
-        StringBuilder tableRow = new StringBuilder();
-        tableRow.append("<tr>");
-
         // TODO: State attributes polishing
 
-        tableRow.append("<td class=\"text-left\">" + state.getIteration() + "</td>");
-        tableRow.append("<td class=\"text-left\">" + state.getCollection() + "</td>");
-        tableRow.append("<td class=\"text-left\">" + state.getCurrent() + "</td>");
-        tableRow.append("<td class=\"text-left\">" + state.getNext() + "</td>");
-        tableRow.append("<td class=\"text-left\">" + state.getNeighbors() + "</td>");
-        tableRow.append("<td class=\"text-left\">" + state.getTimer() + "</td>");
-        tableRow.append("<td class=\"text-left\">" + state.getArrivals() + "</td>");
-        tableRow.append("<td class=\"text-left\">" + state.getDepartures() + "</td>");
+        StringBuilder tableRow = new StringBuilder();
 
-        tableRow.append("</tr>");
+        tableRow.append("<tr><td class=\"text-left\">" + state.getIteration());
+        tableRow.append("</td><td class=\"text-left\">" + Arrays.toString(state.getCollection()));
+        tableRow.append("</td><td class=\"text-left\">" + state.getCurrent());
+        tableRow.append("</td><td class=\"text-left\">" + state.getNext());
+
+        tableRow.append("</td><td class=\"text-left\">");
+        for (int i = 0; i < state.getNeighbors().length; i++) {
+            tableRow.append(Arrays.toString(state.getNeighbors()[i]));
+            if (i < state.getNeighbors().length - 1) {
+                tableRow.append("<br/>");
+            }
+        }
+
+        tableRow.append("</td><td class=\"text-left\">" + state.getTimer());
+        tableRow.append("</td><td class=\"text-left\">");
+        for (int i = 0; i < state.getArrivals().length; i++) {
+            tableRow.append(state.getArrivals()[i]);
+            if (i < state.getArrivals().length - 1) {
+                tableRow.append("<br/>");
+            }
+        }
+        tableRow.append("</td><td class=\"text-left\">");
+        for (int i = 0; i < state.getDepartures().length; i++) {
+            tableRow.append(state.getDepartures()[i]);
+            if (i < state.getDepartures().length - 1) {
+                tableRow.append("<br/>");
+            }
+        }
+        tableRow.append("</td></tr>");
+
         return tableRow.toString();
     }
 

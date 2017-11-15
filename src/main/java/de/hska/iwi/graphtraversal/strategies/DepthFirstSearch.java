@@ -5,6 +5,7 @@ import de.hska.iwi.graphtraversal.graph.Node;
 import de.hska.iwi.graphtraversal.graph.State;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Stack;
 
@@ -16,39 +17,54 @@ public class DepthFirstSearch extends GraphTraversalStrategy {
     private List<Node>[] neighbors;
     private int[] arrivals;
     private int[] departures;
+    List<State> log;
 
     public DepthFirstSearch(Graph graph) {
         super(graph);
-    }
-
-    private void addState(List<State> log, Node current, Node next, int timer) {
-
-        // TODO: Deep copy: by value not by reference!
-
-        // TODO: Don't save useless information
-
-        log.add(new State(
-                iteration++,
-                this.stack,
-                current,
-                next,
-                this.neighbors,
-                timer,
-                this.arrivals,
-                this.departures
-        ));
-    }
-
-    @Override
-    public List<State> traverseGraph(Node startNode) {
-
-        List<State> log = new ArrayList<>();
 
         neighbors = new List[graph.getNodeCount()];
         arrivals = new int[graph.getNodeCount()];
         departures = new int[graph.getNodeCount()];
 
-        // TODO: Deep copy: by value not by reference!
+        log = new ArrayList<>();
+    }
+
+    private void addState(Node current, Node next, int timer) {
+
+        Node[] tmp = new Node[stack.size()];
+        String[] data = new String[stack.size()];
+
+        tmp = stack.toArray(tmp);
+        for (int i = 0; i < stack.size(); i++) {
+            data[i] = tmp[i].getName();
+        }
+
+        String[][] neighborList = new String[graph.getNodeCount()][];
+        for (int i = 0; i < graph.getNodeCount(); i++) {
+            if (neighbors[i] != null) {
+                neighborList[i] = new String[neighbors[i].size()];
+                for (int j = 0; j < neighbors[i].size(); j++) {
+                    neighborList[i][j] = neighbors[i].get(j).getName();
+                }
+            }
+        }
+
+        log.add(
+                new State(
+                        iteration++,
+                        data,
+                        current != null ? current.getName() : null,
+                        next != null ? next.getName() : null,
+                        neighborList,
+                        timer,
+                        Arrays.copyOf(arrivals, graph.getNodeCount()),
+                        Arrays.copyOf(departures, graph.getNodeCount())
+                )
+        );
+    }
+
+    @Override
+    public List<State> traverseGraph(Node startNode) {
 
         stack.push(startNode);
         startNode.mark();
@@ -57,39 +73,37 @@ public class DepthFirstSearch extends GraphTraversalStrategy {
         arrivals[startNode.getIndex()] = timer;
 
         // Save initial state of the graph
-        addState(log, null, null, timer);
+        addState(null, null, timer);
 
         while (!stack.empty()) {
 
             Node current = stack.peek();
-
-            // TODO: Is this statement right here?
             neighbors[current.getIndex()] = current.getNeighbors();
 
-            if (neighbors[current.getIndex()].isEmpty()) {
+            if (!neighbors[current.getIndex()].isEmpty()) {
 
-                // TODO: Choose v2 from neighbors of v
+                // Choose next from neighbors of current
                 Node next = neighbors[current.getIndex()].get(0);
 
-                // TODO: Remove v2 from v's neighbors
+                // Remove next from current's neighbors
                 neighbors[current.getIndex()].remove(next);
 
                 if (!next.isMarked()) {
                     stack.push(next);
                     next.mark();
                     neighbors[next.getIndex()] = next.getNeighbors();
-                    departures[next.getIndex()] = ++timer;
+                    arrivals[next.getIndex()] = ++timer;
                 }
 
                 // Add state of the graph after this iteration
-                addState(log, current, next, timer);
+                addState(current, next, timer);
 
             } else {
                 stack.pop();
                 departures[current.getIndex()] = ++timer;
 
                 // Add state of the graph after this iteration
-                addState(log, current, null, timer);
+                addState(current, null, timer);
             }
         }
         return log;

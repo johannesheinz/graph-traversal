@@ -6,10 +6,10 @@ import java.util.List;
 public class State {
 
     private int iteration;
-    private Collection<Node> collection;
-    private Node current;
-    private Node next;
-    private List[] neighbors;
+    private String[] collection;
+    private String current;
+    private String next;
+    private String[][] neighbors;
     private int timer;
     private int[] arrivals;
     private int[] departures;
@@ -18,7 +18,7 @@ public class State {
         // TODO: Remove default constructor
     }
 
-    public State(int iteration, Collection<Node> collection, Node current, Node next, List[] neighbors, int timer, int[] arrivals, int[] departures) {
+    public State(int iteration, String[] collection, String current, String next, String[][] neighbors, int timer, int[] arrivals, int[] departures) {
         this.iteration = iteration;
         this.collection = collection;
         this.current = current;
@@ -33,19 +33,19 @@ public class State {
         return iteration;
     }
 
-    public Collection<Node> getCollection() {
+    public String[] getCollection() {
         return collection;
     }
 
-    public Node getCurrent() {
+    public String getCurrent() {
         return current;
     }
 
-    public Node getNext() {
+    public String getNext() {
         return next;
     }
 
-    public List[] getNeighbors() {
+    public String[][] getNeighbors() {
         return neighbors;
     }
 

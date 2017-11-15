@@ -46,15 +46,13 @@ public class Node {
     public String toString() {
         StringBuilder nodeString = new StringBuilder();
 
-        nodeString.append("\tNode '" + name + "',  index " + index + ",  ");
+        nodeString.append("\n\t('" + name + "'),  index " + index + ",  is ");
 
-        if (marked) {
-            nodeString.append("is marked\n\t");
-        } else {
-            nodeString.append("is NOT marked\n\t");
+        if (!marked) {
+            nodeString.append("NOT ");
         }
 
-        nodeString.append("Neighbors: ");
+        nodeString.append("marked.\tNeighbors: ");
         for (int i = 0; i < neighbors.size(); i++) {
             nodeString.append(neighbors.get(i).getName());
             if (i < neighbors.size() - 1) {
