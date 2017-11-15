@@ -5,8 +5,16 @@ import java.util.List;
 
 public class Node {
 
+    private int index;
+    private String name;
+
+    private boolean marked = false;
     private List<Node> neighbors = new ArrayList<>();
-    private boolean marked;
+
+    public Node(int index, String name) {
+        this.index = index;
+        this.name = name;
+    }
 
     public void mark() {
         this.marked = true;
@@ -16,20 +24,21 @@ public class Node {
         return marked;
     }
 
-    public void getNeighbor(Node neighbor) {
+    public void addNeighbor(Node neighbor) {
         if (!neighbors.contains(neighbor)) {
             neighbors.add(neighbor);
         }
     }
 
     public List<Node> getNeighbors() {
-        return neighbors;
+        return this.neighbors;
     }
 
     public int getIndex() {
+        return this.index;
+    }
 
-        // TODO: Node index
-
-        return 0;
+    public String getName() {
+        return this.name;
     }
 }
