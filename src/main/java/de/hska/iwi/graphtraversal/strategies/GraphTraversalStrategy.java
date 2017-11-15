@@ -6,7 +6,15 @@ import de.hska.iwi.graphtraversal.graph.State;
 
 import java.util.List;
 
-public interface GraphTraversalStrategy {
+public abstract class GraphTraversalStrategy {
 
-    List<State> traverseGraph(Graph graph, Node startNode);
+    final Graph graph;
+
+    public GraphTraversalStrategy(Graph graph) {
+        this.graph = graph;
+    }
+
+    public abstract List<State> traverseGraph(Node startNode);
+
+    public abstract String getName();
 }

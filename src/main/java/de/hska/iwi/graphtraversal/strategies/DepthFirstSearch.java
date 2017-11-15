@@ -8,23 +8,26 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-public class DepthFirstSearch implements GraphTraversalStrategy {
+public class DepthFirstSearch extends GraphTraversalStrategy {
 
     private Stack<Node> stack = new Stack<>();
     private int iteration = 0;
-    private List<State> states = new ArrayList<>();
 
     private List<Node>[] neighbors;
     private int[] arrivals;
     private int[] departures;
 
-    private void addState(Node current, Node next, int timer) {
+    public DepthFirstSearch(Graph graph) {
+        super(graph);
+    }
+
+    private void addState(List<State> log, Node current, Node next, int timer) {
 
         // TODO: Deep copy: by value not by reference!
 
         // TODO: Don't save useless information
 
-        states.add(new State(
+        log.add(new State(
                 iteration++,
                 this.stack,
                 current,
@@ -37,7 +40,9 @@ public class DepthFirstSearch implements GraphTraversalStrategy {
     }
 
     @Override
-    public List<State> traverseGraph(Graph graph, Node startNode) {
+    public List<State> traverseGraph(Node startNode) {
+
+        List<State> log = new ArrayList<>();
 
         neighbors = new List[graph.getNodeCount()];
         arrivals = new int[graph.getNodeCount()];
@@ -52,7 +57,7 @@ public class DepthFirstSearch implements GraphTraversalStrategy {
         arrivals[startNode.getIndex()] = timer;
 
         // Save initial state of the graph
-        addState(null, null, timer);
+        addState(log, null, null, timer);
 
         while (!stack.empty()) {
 
@@ -77,16 +82,21 @@ public class DepthFirstSearch implements GraphTraversalStrategy {
                 }
 
                 // Add state of the graph after this iteration
-                addState(current, next, timer);
+                addState(log, current, next, timer);
 
             } else {
                 stack.pop();
                 departures[current.getIndex()] = ++timer;
 
                 // Add state of the graph after this iteration
-                addState(current, null, timer);
+                addState(log, current, null, timer);
             }
         }
-        return this.states;
+        return log;
+    }
+
+    @Override
+    public String getName() {
+        return "Depth-first search";
     }
 }
