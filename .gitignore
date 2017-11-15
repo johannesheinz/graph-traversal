@@ -2,6 +2,9 @@
 # Exclude screenshots from the script
 screenshots/*
 
+# Don't save generated test HTML files
+test.html
+
 # Created by https://www.gitignore.io/api/java,linux,maven,windows,eclipse,jetbrains,sublimetext
 
 ### Eclipse ###
