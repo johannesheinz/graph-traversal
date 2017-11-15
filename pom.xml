@@ -28,6 +28,7 @@
         <junit.version>4.12</junit.version>
         <jar.version>3.0.2</jar.version>
         <compiler.version>3.7.0</compiler.version>
+        <jackson.version>2.9.2</jackson.version>
 
         <!-- File encoding -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -35,6 +36,11 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
