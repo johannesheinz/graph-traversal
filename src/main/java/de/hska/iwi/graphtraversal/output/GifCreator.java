@@ -7,10 +7,14 @@ import java.util.List;
 /**
  * Exports the results as an animated *.gif file.
  */
-public class GifCreator implements Exporter {
+public class GifCreator extends Exporter {
+
+    public GifCreator(String filename) {
+        super(filename);
+    }
 
     @Override
-    public void exportResults(List<State> states) {
+    public void exportResults(List<State> log) {
 
     }
 }

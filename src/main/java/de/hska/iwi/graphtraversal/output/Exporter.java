@@ -7,7 +7,13 @@ import java.util.List;
 /**
  * Common methods for all exporters.
  */
-public interface Exporter {
+public abstract class Exporter {
 
-    void exportResults(List<State> states);
+    String filename;
+
+    public Exporter(String filename) {
+        this.filename = filename;
+    }
+
+    public abstract void exportResults(List<State> log);
 }
