@@ -41,4 +41,27 @@ public class Node {
     public String getName() {
         return this.name;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder nodeString = new StringBuilder();
+
+        nodeString.append("\tNode '" + name + "',  index " + index + ",  ");
+
+        if (marked) {
+            nodeString.append("is marked\n\t");
+        } else {
+            nodeString.append("is NOT marked\n\t");
+        }
+
+        nodeString.append("Neighbors: ");
+        for (int i = 0; i < neighbors.size(); i++) {
+            nodeString.append(neighbors.get(i).getName());
+            if (i < neighbors.size() - 1) {
+                nodeString.append(", ");
+            }
+        }
+        nodeString.append("\n");
+        return nodeString.toString();
+    }
 }

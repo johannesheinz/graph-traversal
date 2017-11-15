@@ -5,7 +5,6 @@ import de.hska.iwi.graphtraversal.input.InvalidGraphConfigurationException;
 import de.hska.iwi.graphtraversal.input.NodeNotFoundException;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Graph {
@@ -115,5 +114,10 @@ public class Graph {
      */
     public int getNodeCount() {
         return nodes.size();
+    }
+
+    @Override
+    public String toString() {
+        return "directed? " + directed + "\n" + nodes;
     }
 }

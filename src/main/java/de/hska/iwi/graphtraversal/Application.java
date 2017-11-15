@@ -36,6 +36,8 @@ public class Application {
 
         Graph graph = new Graph(configuration);
 
+        System.out.println(graph);
+
         Map<GraphConfiguration.Strategy, GraphTraversalStrategy> strategies = new HashMap<>();
         strategies.put(DFS, new DepthFirstSearch(graph));
         strategies.put(BFS, new DepthFirstSearch(graph));
