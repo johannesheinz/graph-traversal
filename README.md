@@ -18,16 +18,13 @@ Execution
 
     mvn clean install
 
-
 ### Run main application
 
     mvn clean install exec:java
 
-
 ### Export as \*.jar file including libraries
 
     mvn clean package
-
 
 ### Excute packaged \*.jar file
 
@@ -70,7 +67,7 @@ In undirected graphs there in only one edge type:
 
 You may add whitespaces and change the number of dashes:
 
-| :heavy_check_mark: correct syntax | :x: false syntax |
+| :heavy_check_mark: Correct syntax | :x: False syntax |
 |----------------|--------------|
 |   `a->b`       |  `a>b`       |
 |   `a -> b`     |  `a > b`     |
