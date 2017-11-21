@@ -21,8 +21,8 @@ public class TableWriterTest {
     @Test
     public void exportEmptyLog() throws Exception {
         List<State> log = new ArrayList<>();
-        log.add(new State());
-        log.add(new State());
+        //log.add(new State());
+        //log.add(new State());
         writer.exportResults(log);
     }
 
