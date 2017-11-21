@@ -11,10 +11,6 @@ public class State {
     private int[] arrivals;
     private int[] departures;
 
-    public State() {
-        // TODO: Remove default constructor
-    }
-
     public State(int iteration, String[] collection, String current, String next, String[][] neighbors, int timer, int[] arrivals, int[] departures) {
         this.iteration = iteration;
         this.collection = collection;
