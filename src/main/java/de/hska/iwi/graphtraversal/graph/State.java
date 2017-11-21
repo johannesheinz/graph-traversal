@@ -1,8 +1,5 @@
 package de.hska.iwi.graphtraversal.graph;
 
-import java.util.Collection;
-import java.util.List;
-
 public class State {
 
     private int iteration;

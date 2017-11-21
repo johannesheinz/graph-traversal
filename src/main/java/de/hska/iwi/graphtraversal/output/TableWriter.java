@@ -3,10 +3,6 @@ package de.hska.iwi.graphtraversal.output;
 import de.hska.iwi.graphtraversal.graph.State;
 
 import java.io.*;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 
