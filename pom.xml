@@ -23,16 +23,24 @@
     <packaging>jar</packaging>
 
     <properties>
-        <!-- Plugin versions -->
-        <jdk.version>1.8</jdk.version>
-        <junit.version>4.12</junit.version>
-        <jar.version>3.0.2</jar.version>
-        <compiler.version>3.7.0</compiler.version>
-        <jackson.version>2.9.2</jackson.version>
-
         <!-- File encoding -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        
+        <!-- Java version -->
+        <jdk.version>1.8</jdk.version>
+        
+        <!-- Main application -->
+        <graph.mainClass>de.hska.iwi.graphtraversal.Application</graph.mainClass>
+        
+        <!-- Maven plugin versions -->
+        <compiler.version>3.7.0</compiler.version>
+        <exec.version>1.6.0</exec.version>
+        <assemply.version>3.1.0</assemply.version>
+        
+        <!-- Dependency versions -->
+        <junit.version>4.12</junit.version>
+        <jackson.version>2.9.2</jackson.version>
     </properties>
 
     <dependencies>
@@ -61,20 +69,56 @@
                     <target>${jdk.version}</target>
                 </configuration>
             </plugin>
-
-            <!-- Make this jar executable -->
+            
+            <!-- Execute application -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>${exec.version}</version>
+                <!-- 
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                -->
+                <configuration>
+                    <mainClass>${graph.mainClass}</mainClass>
+                    <!-- 
+                    <arguments>
+                        <argument>argument1</argument>
+                        <argument>argument2</argument>
+                    </arguments>
+                    -->
+                </configuration>
+            </plugin>
+            
+            <!-- Package application with all dependencies -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>${jar.version}</version>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>${assemply.version}</version>
                 <configuration>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
                     <archive>
                         <manifest>
-                            <!-- File entry point -->
-                            <mainClass>de.hska.iwi.graphtraversal.Application</mainClass>
+                            <mainClass>${graph.mainClass}</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
