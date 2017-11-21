@@ -38,7 +38,6 @@ public class TableWriter extends Exporter {
     private String generateTableHeader() {
 
         StringBuilder tableHeader = new StringBuilder();
-        tableHeader.append("<thead><tr>");
 
         tableHeader.append("<th class=\"text-right\">" + "#" + "</th>");
         tableHeader.append("<th class=\"text-center\">" + "Q" + "</th>");
@@ -49,7 +48,6 @@ public class TableWriter extends Exporter {
         tableHeader.append("<th class=\"text-center\">" + "d" + "</th>");
         tableHeader.append("<th class=\"text-center\">" + "f" + "</th>");
 
-        tableHeader.append("</tr></thead>");
         return tableHeader.toString();
     }
 
