@@ -87,6 +87,14 @@ The **correct syntax** of the edges is checked when the application reads and pa
     //TODO Parameters in Maven AND jar file
 
 
+Sample
+------
+
+As an example there is the following sample graph specified:
+
+    //TODO Sample graph
+
+
 Acknowledgments
 ---------------
 
