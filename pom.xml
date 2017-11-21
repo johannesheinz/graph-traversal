@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>de.hska.iwi</groupId>
     <artifactId>graphtraversal</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>0.5-SNAPSHOT</version>
 
     <name>Graph Traversal</name>
     <description>A simple implementation of several graph traversal strategies.</description>
@@ -15,8 +13,8 @@
     <contributors>
         <contributor>
             <name>Johannes Heinz</name>
-            <url>https://github.com/johannesheinz</url>
             <timezone>Europe/Berlin</timezone>
+            <url>https://github.com/johannesheinz</url>
         </contributor>
     </contributors>
 
@@ -26,18 +24,18 @@
         <!-- File encoding -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        
+
         <!-- Java version -->
         <jdk.version>1.8</jdk.version>
-        
+
         <!-- Main application -->
         <graph.mainClass>de.hska.iwi.graphtraversal.Application</graph.mainClass>
-        
+
         <!-- Maven plugin versions -->
         <compiler.version>3.7.0</compiler.version>
         <exec.version>1.6.0</exec.version>
         <assemply.version>3.1.0</assemply.version>
-        
+
         <!-- Dependency versions -->
         <junit.version>4.12</junit.version>
         <jackson.version>2.9.2</jackson.version>
@@ -69,7 +67,7 @@
                     <target>${jdk.version}</target>
                 </configuration>
             </plugin>
-            
+
             <!-- Execute application -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -94,7 +92,7 @@
                     -->
                 </configuration>
             </plugin>
-            
+
             <!-- Package application with all dependencies -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
