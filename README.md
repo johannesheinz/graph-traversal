@@ -44,7 +44,7 @@ The application can be configured via a JSON file that contains the following pr
 | **`directed`**  | `boolean`  | `true` if this is a directed graph, `false` if this is an undirected graph            | `true`             |
 | **`edges`**     | `String[]` | A list of all edges within the graph, for [specification see below](#how-to-define-edges) | `["a->b", "b->c"]` |
 | **`nodes`**     | `String[]` | A list of all vertices specified by their names                                       | `["a", "b", "c"]`  |
-| **`output`**    | `String[]` | All selected output formats, either `[]`, `["table"]`, `["gif"]` or `["table","gif"]` | `["table"]`        |
+| **`output`**    | `String[]` | A list of the selected output formats, either `[]`, `["table"]`, `["gif"]` or `["table","gif"]` | `["table"]`        |
 | **`startNode`** | `String`   | The name of the start node                                                            | `"a"`              |
 | **`strategy`**  | `String`   | The name of the search strategy, either `"dfs"`, or `"bfs"`                           | `"dfs"`            |
 
@@ -70,7 +70,7 @@ In undirected graphs there in only one edge type:
 
 You may add whitespaces and change the number of dashes:
 
-| :heavy_check_mark: correct syntax :thumbsup: | :x: false syntax :thumbsdown: |
+| :heavy_check_mark: correct syntax | :x: false syntax |
 |----------------|--------------|
 |   `a->b`       |  `a>b`       |
 |   `a -> b`     |  `a > b`     |
