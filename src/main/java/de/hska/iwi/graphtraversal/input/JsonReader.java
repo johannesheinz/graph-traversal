@@ -2,7 +2,7 @@ package de.hska.iwi.graphtraversal.input;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.io.File;
+import java.io.InputStream;
 import java.io.IOException;
 
 public class JsonReader {
@@ -24,19 +24,17 @@ public class JsonReader {
      * @throws InvalidGraphConfigurationException if an error occurs during parsing of the JSON document
      */
     public GraphConfiguration readConfig(String filename) throws InvalidGraphConfigurationException {
-
+        
         ClassLoader classLoader = getClass().getClassLoader();
-        File file = new File(classLoader.getResource(filename).getFile());
-
         GraphConfiguration config = null;
-
-        try {
-            config = mapper.readValue(file, GraphConfiguration.class);
-
+        
+        try(InputStream inputStream = classLoader.getResourceAsStream(filename)) {
+            config = mapper.readValue(inputStream, GraphConfiguration.class);
+            
         } catch (IOException e) {
             throw new InvalidGraphConfigurationException(e.getMessage());
         }
-
+        
         return config;
     }
 }
