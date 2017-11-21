@@ -12,6 +12,10 @@ import java.util.List;
 
 /**
  * Exports the result as a step-by-step HTML table.
+ *
+ * Using the Pen "Data Table" by Andrew Lassetter (@alassetter)
+ * Source: https://codepen.io/alassetter/pen/cyrfB
+ * License: MIT License (https://blog.codepen.io/legal/licensing)
  */
 public class TableWriter extends Exporter {
 
