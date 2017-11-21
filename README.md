@@ -50,10 +50,37 @@ A sample configuration can be found in the [resource files](https://raw.githubus
 
 ### How to define edges?
 
+There are two different specifications depending on the type of the graph:
 
+**Edges in directed graphs:** 
 
+In directed graphs there are 3 types of edges:
 
-The correct syntax of the edges is checked while the 
+ - `a-->b`: There is an edge from node "a" to node "b", but not in the opposite direction (unidirectional)
+ - `a<--b`: There is an edge from node "b" to node "a", but not in the opposite direction (unidirectional)
+ - `a<->c`: There is both, an edge from "a" to "b" and an edge from "b" to "a" (bidirectional)
+
+**Edges in undirected graphs:** 
+
+In undirected graphs there in only one edge type:
+
+ - `a-b`: There is an edge between node "a" and node "b" (bidirectional)
+
+You may add whitespaces and change the number of dashes:
+
+| correct syntax | false syntax |
+|----------------|--------------|
+|   `a->b`       |  `a>b`       |
+|   `a -> b`     |  `a > b`     |
+|   `a-> b`      |  `a - > b`   |
+|   ` a -> b `   |  `a- >b`     |
+|   `a------>b`  |  `a - - >b`  |
+|   `a --> b`    |  `a- -b`     |
+|   ` a-b `      |              |
+|   `a - b`      |              |
+|   `a --- b`    |              |
+
+The **correct syntax** of the edges is checked when the application reads and parses the JSON file.
 
 ### How to pass my JSON configuration to the application?
 
