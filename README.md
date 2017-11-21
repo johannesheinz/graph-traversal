@@ -1,7 +1,7 @@
 Graph traversal algorithms
 ==========================
 
-A simple implementation of several graph traversal strategies such as depth-first search (DFS) and breadth-first search (BFS). From a given configuration the application generates a HTML table of the steps of the process as well as an animated gif file.
+A simple implementation of several graph traversal strategies such as depth-first search (DFS) and breadth-first search (BFS). From a given JSON configuration the application generates a HTML table containing the state of the graph at each iteration as well as an animated gif file.
 
 
 Requirements
@@ -39,12 +39,14 @@ Configuration
 
 The application can be configured via a JSON file that contains the following properties:
 
- - **`directed`:** `boolean` - `true` if this is a directed graph, `false` if this is an undirected graph
- - **`edges`:** `Array of Strings` - A list of all edges within the graph, for specification see below
- - **`nodes`:** `Array of Strings` - A list of all vertices specified by their names, e.g. `["a", "b", "c"]`
- - **`output`:** `Array of Strings` - All selected output formats, either `[]`, `["table"]`, `["gif"]` or `["table","gif"]`
- - **`startNode`:** `String` - name of the start node
- - **`strategy`:** `String` - either `"dfs"`, or `"bfs"`
+| Property        | Type       | Description                                                                           | Example            |
+| --------------- | ---------- | ------------------------------------------------------------------------------------- | ------------------ |
+| **`directed`**  | `boolean`  | `true` if this is a directed graph, `false` if this is an undirected graph            | `true`             |
+| **`edges`**     | `String[]` | A list of all edges within the graph, for [specification see below](#how-to-define-edges) | `["a->b", "b->c"]` |
+| **`nodes`**     | `String[]` | A list of all vertices specified by their names                                       | `["a", "b", "c"]`  |
+| **`output`**    | `String[]` | All selected output formats, either `[]`, `["table"]`, `["gif"]` or `["table","gif"]` | `["table"]`        |
+| **`startNode`** | `String`   | The name of the start node                                                            | `"a"`              |
+| **`strategy`**  | `String`   | The name of the search strategy, either `"dfs"`, or `"bfs"`                           | `"dfs"`            |
 
 A sample configuration can be found in the [resource files](https://raw.githubusercontent.com/johannesheinz/graphtraversal/master/src/main/resources/sample-configuration.json).
 
@@ -68,7 +70,7 @@ In undirected graphs there in only one edge type:
 
 You may add whitespaces and change the number of dashes:
 
-| correct syntax | false syntax |
+| :heavy_check_mark: correct syntax :thumbsup: | :x: false syntax :thumbsdown: |
 |----------------|--------------|
 |   `a->b`       |  `a>b`       |
 |   `a -> b`     |  `a > b`     |
