@@ -9,9 +9,16 @@ import java.util.List;
 
 public class Graph {
 
+    /** Is this a directed or undirected graph? */
     private final boolean directed;
+
+    /** A list of all nodes in this graph*/
     private List<Node> nodes = new ArrayList<>();
 
+    /**
+     * Creates a new graph from a given configuration
+     * @param configuration A graph configuration
+     */
     public Graph(GraphConfiguration configuration) {
 
         this.directed = configuration.isDirected();
@@ -67,7 +74,7 @@ public class Graph {
                 node2.addNeighbor(node1);
 
             } else {
-                throw new InvalidGraphConfigurationException("Invalid edge syntax: Cannot find a matching edge type for this directed edge.");
+                throw new InvalidGraphConfigurationException("Invalid edge syntax: Cannot find a matching edge type for this directed edge: '" + edge + "'");
             }
 
         } else {
@@ -76,9 +83,22 @@ public class Graph {
             }
 
             edge = edge.trim();
-            edge.split("-");
-            // TODO: Parse edges of undirected graph
+            String[] split = edge.split("(-)+");
 
+            if (split.length == 2) {
+
+                // TODO: Test parse edges of undirected graph
+
+                Node node1 = getNodeByName(split[0]);
+                Node node2 = getNodeByName(split[1]);
+
+                // node1 -- node2
+                node1.addNeighbor(node2);
+                node2.addNeighbor(node1);
+
+            } else {
+                throw new InvalidGraphConfigurationException("Invalid edge syntax: Cannot find a matching edge type for this undirected edge: '" + edge + "'");
+            }
         }
     }
 
