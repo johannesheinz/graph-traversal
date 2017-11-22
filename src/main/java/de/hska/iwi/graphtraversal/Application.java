@@ -10,6 +10,7 @@ import de.hska.iwi.graphtraversal.input.JsonReader;
 import de.hska.iwi.graphtraversal.output.Exporter;
 import de.hska.iwi.graphtraversal.output.GifCreator;
 import de.hska.iwi.graphtraversal.output.TableWriter;
+import de.hska.iwi.graphtraversal.strategies.BreadthFirstSearch;
 import de.hska.iwi.graphtraversal.strategies.DepthFirstSearch;
 import de.hska.iwi.graphtraversal.strategies.GraphTraversalStrategy;
 
@@ -43,11 +44,11 @@ public class Application {
 
         Map<GraphConfiguration.Strategy, GraphTraversalStrategy> strategies = new HashMap<>();
         strategies.put(DFS, new DepthFirstSearch(graph));
-        strategies.put(BFS, new DepthFirstSearch(graph));
+        strategies.put(BFS, new BreadthFirstSearch(graph));
 
         GraphTraversalStrategy strategy = strategies.get(configuration.getStrategy());
         
-        List<State> log = new ArrayList<>();
+        List<State> log;
         final String startNodeName = configuration.getStartNode();
         
         try {

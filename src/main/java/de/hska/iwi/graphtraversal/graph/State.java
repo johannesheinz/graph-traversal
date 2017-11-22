@@ -10,6 +10,7 @@ public class State {
     private int timer;
     private int[] arrivals;
     private int[] departures;
+    private int[] distance;
 
     public State(int iteration, String[] collection, String current, String next, String[][] neighbors, int timer, int[] arrivals, int[] departures) {
         this.iteration = iteration;
@@ -20,6 +21,19 @@ public class State {
         this.timer = timer;
         this.arrivals = arrivals;
         this.departures = departures;
+        this.distance = null;
+    }
+
+    public State(int iteration, String[] collection, String current, String next, String[][] neighbors, int[] distance) {
+        this.iteration = iteration;
+        this.collection = collection;
+        this.current = current;
+        this.next = next;
+        this.neighbors = neighbors;
+        this.timer = 0;
+        this.arrivals = null;
+        this.departures = null;
+        this.distance = distance;
     }
 
     public int getIteration() {
@@ -52,6 +66,10 @@ public class State {
 
     public int[] getDepartures() {
         return departures;
+    }
+
+    public int[] getDistance() {
+        return distance;
     }
 
     @Override
