@@ -1,6 +1,7 @@
 package de.hska.iwi.graphtraversal.output;
 
 import de.hska.iwi.graphtraversal.graph.State;
+import de.hska.iwi.graphtraversal.input.Strategy;
 
 import java.io.*;
 import java.util.Arrays;
@@ -8,7 +9,7 @@ import java.util.List;
 
 /**
  * Exports the result as a step-by-step HTML table.
- *
+ * <p>
  * Using the Pen "Data Table" by Andrew Lassetter (@alassetter)
  * Source: https://codepen.io/alassetter/pen/cyrfB
  * License: MIT License (https://blog.codepen.io/legal/licensing)
@@ -24,11 +25,13 @@ public class TableWriter extends Exporter {
 
     private final String htmlTitle;
     private final String headline;
+    private final Strategy strategy;
 
-    public TableWriter(String filename, String htmlTitle, String headline) {
+    public TableWriter(String filename, Strategy strategy) {
         super(filename);
-        this.htmlTitle = htmlTitle;
-        this.headline = headline;
+        this.strategy = strategy;
+        this.htmlTitle = strategy.getName();
+        this.headline = strategy.getName();
     }
 
     private String generateTableHeader() {
@@ -40,9 +43,16 @@ public class TableWriter extends Exporter {
         tableHeader.append("<th class=\"text-left\">" + "v" + "</th>");
         tableHeader.append("<th class=\"text-left\">" + "v'" + "</th>");
         tableHeader.append("<th class=\"text-center\">" + "N" + "</th>");
-        tableHeader.append("<th class=\"text-center\">" + "u" + "</th>");
+
+        if (strategy == Strategy.DFS) {
+            tableHeader.append("<th class=\"text-center\">" + "u" + "</th>");
+        }
+
         tableHeader.append("<th class=\"text-center\">" + "d" + "</th>");
-        tableHeader.append("<th class=\"text-center\">" + "f" + "</th>");
+
+        if (strategy == Strategy.DFS) {
+            tableHeader.append("<th class=\"text-center\">" + "f" + "</th>");
+        }
 
         return tableHeader.toString();
     }
@@ -66,23 +76,40 @@ public class TableWriter extends Exporter {
             }
         }
 
-        tableRow.append("</td><td class=\"text-left\">" + state.getTimer());
         tableRow.append("</td><td class=\"text-left\">");
-        for (int i = 0; i < state.getArrivals().length; i++) {
-            tableRow.append(state.getArrivals()[i]);
-            if (i < state.getArrivals().length - 1) {
-                tableRow.append("<br/>");
-            }
-        }
-        tableRow.append("</td><td class=\"text-left\">");
-        for (int i = 0; i < state.getDepartures().length; i++) {
-            tableRow.append(state.getDepartures()[i]);
-            if (i < state.getDepartures().length - 1) {
-                tableRow.append("<br/>");
-            }
-        }
-        tableRow.append("</td></tr>");
 
+        switch (strategy) {
+            case BFS:
+                for (int i = 0; i < state.getDistance().length; i++) {
+                    tableRow.append(state.getDistance()[i]);
+                    if (i < state.getDistance().length - 1) {
+                        tableRow.append("<br/>");
+                    }
+                }
+                break;
+
+            case DFS:
+                tableRow.append(state.getTimer());
+                tableRow.append("</td><td class=\"text-left\">");
+
+                for (int i = 0; i < state.getArrivals().length; i++) {
+                    tableRow.append(state.getArrivals()[i]);
+                    if (i < state.getArrivals().length - 1) {
+                        tableRow.append("<br/>");
+                    }
+                }
+                tableRow.append("</td><td class=\"text-left\">");
+
+                for (int i = 0; i < state.getDepartures().length; i++) {
+                    tableRow.append(state.getDepartures()[i]);
+                    if (i < state.getDepartures().length - 1) {
+                        tableRow.append("<br/>");
+                    }
+                }
+                break;
+        }
+
+        tableRow.append("</td></tr>");
         return tableRow.toString();
     }
 

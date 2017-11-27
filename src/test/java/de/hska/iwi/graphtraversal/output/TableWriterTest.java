@@ -1,6 +1,7 @@
 package de.hska.iwi.graphtraversal.output;
 
 import de.hska.iwi.graphtraversal.graph.State;
+import de.hska.iwi.graphtraversal.input.Strategy;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -15,7 +16,7 @@ public class TableWriterTest {
 
     @Before
     public void setUp() throws Exception {
-        this.writer = new TableWriter("test", "Depth-first search", "Depth-first search");
+        this.writer = new TableWriter("test", Strategy.DFS);
     }
 
     @Test

@@ -53,10 +53,14 @@ public class Node {
         }
 
         nodeString.append("marked.\tNeighbors: ");
-        for (int i = 0; i < neighbors.size(); i++) {
-            nodeString.append(neighbors.get(i).getName());
-            if (i < neighbors.size() - 1) {
-                nodeString.append(", ");
+        if (neighbors.isEmpty()) {
+            nodeString.append("-");
+        } else {
+            for (int i = 0; i < neighbors.size(); i++) {
+                nodeString.append(neighbors.get(i).getName());
+                if (i < neighbors.size() - 1) {
+                    nodeString.append(", ");
+                }
             }
         }
         nodeString.append("\n");

@@ -3,6 +3,7 @@ package de.hska.iwi.graphtraversal.strategies;
 import de.hska.iwi.graphtraversal.graph.Graph;
 import de.hska.iwi.graphtraversal.graph.Node;
 import de.hska.iwi.graphtraversal.graph.State;
+import de.hska.iwi.graphtraversal.input.Strategy;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -11,7 +12,7 @@ import java.util.List;
 public abstract class GraphTraversalStrategy {
 
     final Graph graph;
-    final String name;
+    final Strategy strategy;
 
     int iteration;
     List<Node>[] neighbors;
@@ -19,10 +20,10 @@ public abstract class GraphTraversalStrategy {
     List<State> log;
 
     @SuppressWarnings("unchecked")
-    GraphTraversalStrategy(final Graph graph, final String name) {
+    GraphTraversalStrategy(final Graph graph, final Strategy strategy) {
 
         this.graph = graph;
-        this.name = name;
+        this.strategy = strategy;
 
         this.iteration = 0;
         this.neighbors = (List<Node>[]) new List[graph.getNodeCount()];
@@ -30,8 +31,8 @@ public abstract class GraphTraversalStrategy {
         this.log = new ArrayList<>();
     }
 
-    public String getName() {
-        return this.name;
+    public Strategy getStrategy() {
+        return strategy;
     }
 
     public abstract List<State> traverseGraph(Node startNode);

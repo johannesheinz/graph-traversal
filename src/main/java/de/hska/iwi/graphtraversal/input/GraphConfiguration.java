@@ -25,17 +25,6 @@ public class GraphConfiguration {
     private Strategy strategy;
 
 
-    public enum Strategy {
-        @JsonProperty("dfs") DFS,
-        @JsonProperty("bfs") BFS
-    }
-
-    public enum Output {
-        @JsonProperty("table") TABLE,
-        @JsonProperty("gif") GIF
-    }
-
-
     public boolean isDirected() {
         return directed;
     }

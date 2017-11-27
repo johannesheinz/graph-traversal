@@ -3,6 +3,7 @@ package de.hska.iwi.graphtraversal.strategies;
 import de.hska.iwi.graphtraversal.graph.Graph;
 import de.hska.iwi.graphtraversal.graph.Node;
 import de.hska.iwi.graphtraversal.graph.State;
+import de.hska.iwi.graphtraversal.input.Strategy;
 
 import java.util.Arrays;
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.Stack;
 
 public class DepthFirstSearch extends GraphTraversalStrategy {
 
-    private static final String DFS_NAME = "Depth-first search";
+    private static final Strategy STRATEGY = Strategy.DFS;
 
     private Stack<Node> stack = new Stack<>();
     private int timer;
@@ -19,12 +20,10 @@ public class DepthFirstSearch extends GraphTraversalStrategy {
 
     public DepthFirstSearch(Graph graph) {
 
-        super(graph, DFS_NAME);
-
-        // DFS collection
-        this.stack = new Stack<>();
+        super(graph, STRATEGY);
 
         this.timer = 1;
+        this.stack = new Stack<>();
         this.arrivals = new int[graph.getNodeCount()];
         this.departures = new int[graph.getNodeCount()];
     }

@@ -3,6 +3,7 @@ package de.hska.iwi.graphtraversal.strategies;
 import de.hska.iwi.graphtraversal.graph.Graph;
 import de.hska.iwi.graphtraversal.graph.Node;
 import de.hska.iwi.graphtraversal.graph.State;
+import de.hska.iwi.graphtraversal.input.Strategy;
 
 import java.util.*;
 
@@ -11,19 +12,18 @@ import java.util.*;
  */
 public class BreadthFirstSearch extends GraphTraversalStrategy {
 
-    private static final String BFS_NAME = "Breadth-first search";
+    private static final Strategy STRATEGY = Strategy.BFS;
 
     private Queue<Node> queue;
     private int[] distance;
 
     public BreadthFirstSearch(Graph graph) {
 
-        super(graph, BFS_NAME);
+        super(graph, STRATEGY);
 
-        // BFS collection
         this.queue = new LinkedList<>();
-
         this.distance = new int[graph.getNodeCount()];
+        Arrays.fill(distance, -1);
     }
 
     @Override
